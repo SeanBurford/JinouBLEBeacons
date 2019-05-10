@@ -252,7 +252,7 @@ Software Rev: V1.0.4
 
 Hardware Rev: V2.0
 
-Firmware Rev: V1.4.0
+Firmware Rev: V1.4.0 (TI SDK version)
 
 Software Rev: V0.2.5
 
