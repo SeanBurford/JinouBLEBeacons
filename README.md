@@ -117,13 +117,13 @@ Password for binding with the beacon over BLE, as an integer.  Max length is 6 d
 
 > 0000f355-0000-1000-8000-00805f9b34fb 01 (0dBm)
 
-| TX Power | Power to Advertise | Value                        |
-| --------:| ------------------:| ----------------------------:|
-| 0x01     | 0xBA               | default iBeacon power (?dBm) |
-| 0x00     | 0x04               | 4dBm                         |
-| 0x01     | 0x00               | 0dBm                         |
-| 0x02     | 0xFA               | -6dBm                        |
-| 0x03     | 0xE9               | -23dBm                       |
+| TX Power | Measured RSSI | Value                        |
+| --------:| -------------:| ----------------------------:|
+| 0x01     | 0xBA          | default iBeacon power (?dBm) |
+| 0x00     | 0x04          | 4dBm                         |
+| 0x01     | 0x00          | 0dBm                         |
+| 0x02     | 0xFA          | -6dBm                        |
+| 0x03     | 0xE9          | -23dBm                       |
 
 ### Measured RSSI (0xF354)
 
@@ -184,8 +184,21 @@ Available on models that support iBeacon.  iBeacon is selected by writing 0x00 t
 
 | Handle | P  | Description                                |
 | ------ | -- | ------------------------------------------ |
+| 0xF351 | RW | iBeacon UUID                               |
+| 0xF352 | RW | iBeacon Major                              |
+| 0xF353 | RW | iBeacon Minor                              |
 
+### iBeacon UUID (0xF351)
 
+> 0000f351-0000-1000-8000-00805f9b34fb 00-12-34-56-78-9A-BC-DE-F0-00-12-34-56-78-9A-BC
+
+### iBeacon Major (0xF352)
+
+> 0000f352-0000-1000-8000-00805f9b34fb 00-00
+
+### iBeacon Minor (0xF353)
+
+> 0000f353-0000-1000-8000-00805f9b34fb 00-00
 
 ## Eddystone™ GATT Vendor Characteristics
 
@@ -193,7 +206,29 @@ Available on models that support Eddystone™.  Eddystone™ is selected by writ
 
 | Handle | P  | Description                                |
 | ------ | -- | ------------------------------------------ |
+| 0xF35D | RW | Eddystone Frame Type                       |
+| 0xF35E | RW | Namespace + Instance ID                    |
+| 0xF35F | RW | URI                                        |
 
+### Eddystone Frame Type
+
+> 0000f35d-0000-1000-8000-00805f9b34fb 10
+
+Selects broadcast of UUID (0x00) or URL (0x10).
+
+### Namespace + Instance ID
+
+Namespace + Instance ID to broadcast if frame type is 0x00.
+
+> 0000f35e-0000-1000-8000-00805f9b34fb, value: (0x) 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
+
+### URI
+
+URI to broadcast if frame type is 0x10.
+
+> 0000f35f-0000-1000-8000-00805f9b34fb 00-6A-69-6E-6F-75-78-00 "http://www.jinoux.com"
+
+[Online encoder](https://www.mkompf.com/tech/eddystoneurl.html) for the URI and measured RSSI level.
 
 ## Models
 
@@ -208,4 +243,16 @@ Hardware Rev: V1.1
 Firmware Rev: V15.0.0 (nRF SDK version)
 
 Software Rev: V1.0.4
+
+### JO-0468-6
+
+| Model Number | Chip     | Beacons             | Form  | Description                   |
+| ------------ | -------- | ------------------- | ----- | ----------------------------- |
+| JO-0468-6    | CC254x   | iBeacon             | Case  | Replaceable 2xAA battery      |
+
+Hardware Rev: V2.0
+
+Firmware Rev: V1.4.0
+
+Software Rev: V0.2.5
 
